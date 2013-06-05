@@ -15,7 +15,7 @@ Simple HTML5 Video Gallery for Sublime Video
 * Add Sublime Video JS to head (Needed for the player).
 * Add the videogallery folder to your site's root.
 * Run http://yoursite.com/dev/build/?flush=1
-* Add mime types to .htaccess
+* Add mime types to .htaccess - 
 AddType video/mp4 .mp4
 AddType video/ogg .ogv 
 AddType audio/ogg .ogg
