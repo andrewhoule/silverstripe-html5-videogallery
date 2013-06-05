@@ -6,7 +6,7 @@ class VideoPage extends Page {
 		'Videos' => 'Video'
 	);
 	
-	static $icon = "mysite/icons/videopage";
+	static $icon = "videogallery/images/videopage";
 	
 	public function getCMSFields() {
 		$fields = parent::getCMSFields();
