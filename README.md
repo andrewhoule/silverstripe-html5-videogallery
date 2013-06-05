@@ -23,4 +23,8 @@ AddType video/webm .webm
 AddType audio/webm .weba
 * Create a new videa gallery page. Upload files & Enjoy.
 
+## Todo 
+* Add list/gallery view options
+* Add other players
+
 
