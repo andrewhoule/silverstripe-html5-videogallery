@@ -1,6 +1,6 @@
 {
     "name": "andrewhoule/silverstripe-videogallery",
-    "description": "Simple photo gallery that depends on sublime video",
+    "description": "Simple video gallery that depends on sublime video",
     "type": "silverstripe-module",
     "keywords": ["silverstripe", "videos", "video gallery"],
     "license": "BSD-3-Clause",
