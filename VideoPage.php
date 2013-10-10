@@ -2,27 +2,30 @@
 
 class VideoPage extends Page {
 	
-	static $has_many = array (
-		'Videos' => 'Video'
+	private static $has_many = array (
+		"Videos" => "Video"
 	);
 	
-	static $icon = "videogallery/images/videopage";
+	private static $icon = "videogallery/images/videopage";
 	
 	public function getCMSFields() {
 		$fields = parent::getCMSFields();
-		$VideosGridFieldConfig = GridFieldConfig::create()->addComponents(
-			new GridFieldToolbarHeader(),
-			new GridFieldAddNewButton('toolbar-header-right'),
-			new GridFieldSortableHeader(),
-			new GridFieldDataColumns(),
-			new GridFieldPaginator(50),
-			new GridFieldEditButton(),
-			new GridFieldDeleteAction(),
-			new GridFieldDetailForm(),
-			new GridFieldSortableRows('SortOrder')
-		);
-		$VideosGridField = new GridField("Videos", "Videos", $this->Videos(), $VideosGridFieldConfig);
-		$fields->addFieldToTab("Root.Videos", $VideosGridField);
+		$VideosGridField = new GridField(
+            'Videos',
+            'Video',
+            $this->Videos(),
+            GridFieldConfig::create()
+                ->addComponent(new GridFieldToolbarHeader())
+                ->addComponent(new GridFieldAddNewButton('toolbar-header-right'))
+                ->addComponent(new GridFieldSortableHeader())
+                ->addComponent(new GridFieldDataColumns())
+                ->addComponent(new GridFieldPaginator(50))
+                ->addComponent(new GridFieldEditButton())
+                ->addComponent(new GridFieldDeleteAction())
+                ->addComponent(new GridFieldDetailForm())
+                ->addComponent(new GridFieldSortableRows('SortOrder'))
+        );
+        $fields->addFieldToTab("Root.Videos", $VideosGridField);
 		return $fields;
 	}
 
@@ -32,7 +35,7 @@ class VideoPage_Controller extends Page_Controller {
 
 	function init() {
 		parent::init();
-		Requirements::CSS('videogallery/css/videogallery.css');
+		Requirements::CSS("videogallery/css/videogallery.css");
 	}
 
 	public function HTML5Videos() {

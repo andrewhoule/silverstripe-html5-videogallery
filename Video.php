@@ -2,27 +2,29 @@
 
 class Video extends DataObject { 
 	
-	static $db = array (
-		'SortOrder' => 'Int',
-		'Name' => 'Text',
-		'Description' => 'Text'
+	private static $db = array (
+		"SortOrder" => "Int",
+		"Name" => "Text",
+		"Description" => "Text"
 	);
 	
-	static $has_one = array (
-		'VideoPage' => 'VideoPage',
-		'Poster' => 'Image',
-		'MP4' => 'File',
-		'WEBM' => 'File',
-		'OGG' => 'File'
+	private static $has_one = array (
+		"VideoPage" => "VideoPage",
+		"Poster" => "Image",
+		"MP4" => "File",
+		"WEBM" => "File",
+		"OGG" => "File"
 	);
 	
-	public static $default_sort = 'SortOrder Asc';
+	private static $default_sort = "SortOrder Asc";
 
-	static $summary_fields = array( 
-		'Thumbnail' => 'Poster',
-		'Name' => 'Name',
-      	'Description' => 'Description'
+	private static $summary_fields = array( 
+		"Thumbnail" => "Poster",
+		"Name" => "Name",
+      	"Description" => "Description"
    	);
+
+   	private static $allowed_extensions = array("webm"); 
 
 	function canCreate($Member = null) { return true; }
 	function canEdit($Member = null) { return true; }
@@ -52,7 +54,7 @@ class Video extends DataObject {
 		 return $this->Poster()->CroppedImage($x,$y);
 	}
 	
-	function  Thumbnail() {
+	public function Thumbnail() {
 		$Image = $this->Poster();
 		if ( $Image ) 
 			return $Image->CMSThumbnail();
