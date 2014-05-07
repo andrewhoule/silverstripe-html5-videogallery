@@ -2,11 +2,15 @@
 
 class VideoPage extends Page {
 	
+	private static $db = array (
+		'SublimeJS' => 'Text'
+	);
+
 	private static $has_many = array (
-		"Videos" => "Video"
+		'Videos' => 'Video'
 	);
 	
-	private static $icon = "videogallery/images/videopage";
+	private static $icon = 'videogallery/images/videopage';
 	
 	public function getCMSFields() {
 		$fields = parent::getCMSFields();
@@ -26,6 +30,7 @@ class VideoPage extends Page {
                 ->addComponent(new GridFieldSortableRows('SortOrder'))
         );
         $fields->addFieldToTab("Root.Videos", $VideosGridField);
+        $fields->addFieldToTab("Root.Config", TextField::create('SublimeJS')->setTitle('Sublime JS URL')->setDescription('For example //cdn.sublimevideo.net/js/yourid.js'));
 		return $fields;
 	}
 
@@ -33,10 +38,11 @@ class VideoPage extends Page {
 
 class VideoPage_Controller extends Page_Controller {
 
-	function init() {
-		parent::init();
-		Requirements::CSS("videogallery/css/videogallery.css");
-	}
+	public function init() {
+        parent::init();
+        Requirements::CSS("videogallery/css/videogallery.css");
+        Requirements::javascript($this->SublimeJS);
+    }
 
 	public function HTML5Videos() {
 		$videosfiltered = new ArrayList();
