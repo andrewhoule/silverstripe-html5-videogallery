@@ -1,4 +1,4 @@
-<% if Content %>$Content<% end_if %></div>
+<% if Content %>$Content<% end_if %>
 <% if HTML5Videos %>
 <div class="videos-wrap">
 	<ul id="videos">
