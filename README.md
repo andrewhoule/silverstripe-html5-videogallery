@@ -11,7 +11,7 @@ Simple HTML5 Video Gallery for Sublime Video
 * Sublime Video - http://sublimevideo.net/
 
 ## Installation
-* Via Composer run "composer require andrewhoule/silverstripe-videogallery dev-master" or the following...
+Via Composer run "composer require andrewhoule/silverstripe-videogallery dev-master" then go to http://yoursite.com/dev/build/?flush=1 or the following...
 * Install SortableGridField module (see above).
 * Add the videogallery folder to your site's root.
 * Run http://yoursite.com/dev/build/?flush=all
