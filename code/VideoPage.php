@@ -1,20 +1,22 @@
 <?php
 
-class VideoPage extends Page {
-	
-	private static $db = array (
-		'SublimeJS' => 'Text'
-	);
+class VideoPage extends Page
+{
+    
+    private static $db = array(
+        'SublimeJS' => 'Text'
+    );
 
-	private static $has_many = array (
-		'Videos' => 'Video'
-	);
-	
-	private static $icon = 'videogallery/images/videopage';
-	
-	public function getCMSFields() {
-		$fields = parent::getCMSFields();
-		$VideosGridField = new GridField(
+    private static $has_many = array(
+        'Videos' => 'Video'
+    );
+    
+    private static $icon = 'videogallery/images/videopage';
+    
+    public function getCMSFields()
+    {
+        $fields = parent::getCMSFields();
+        $VideosGridField = new GridField(
             'Videos',
             'Video',
             $this->Videos(),
@@ -31,32 +33,31 @@ class VideoPage extends Page {
         );
         $fields->addFieldToTab("Root.Videos", $VideosGridField);
         $fields->addFieldToTab("Root.Config", TextField::create('SublimeJS')->setTitle('Sublime JS URL')->setDescription('For example //cdn.sublimevideo.net/js/yourid.js'));
-		return $fields;
-	}
-
+        return $fields;
+    }
 }
 
-class VideoPage_Controller extends Page_Controller {
+class VideoPage_Controller extends Page_Controller
+{
 
-	public function init() {
+    public function init()
+    {
         parent::init();
         Requirements::CSS("videogallery/css/videogallery.css");
         Requirements::javascript($this->SublimeJS);
     }
 
-	public function HTML5Videos() {
-		$videosfiltered = new ArrayList();
-		$videos = $this->getComponents('Videos');
-		if($videos) {
-			foreach($videos AS $video) {
-				if( $video->getComponent('Poster')->exists() AND $video->getComponent('MP4')->exists() AND $video->getComponent('WEBM')->exists() AND $video->getComponent('OGG')->exists() ) {
-					$videosfiltered->push($video); 
-				}
-			}
-		}
-		return $videosfiltered;
-	}
-	
+    public function HTML5Videos()
+    {
+        $videosfiltered = new ArrayList();
+        $videos = $this->getComponents('Videos');
+        if ($videos) {
+            foreach ($videos as $video) {
+                if ($video->getComponent('Poster')->exists() and $video->getComponent('MP4')->exists() and $video->getComponent('WEBM')->exists() and $video->getComponent('OGG')->exists()) {
+                    $videosfiltered->push($video);
+                }
+            }
+        }
+        return $videosfiltered;
+    }
 }
-
-?>
